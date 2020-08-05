@@ -94,11 +94,13 @@ def publish_messages(project_id, topic_id):
     topic_path = publisher.topic_path(project_id, topic_id)
 
     for n in range(1, 10):
-        data = u"Message number {}".format(n)
+        data = u"Order number {} Placed".format(n)
         # Data must be a bytestring
         data = data.encode("utf-8")
         # When you publish a message, the client returns a future.
         future = publisher.publish(topic_path, data=data)
+        print(data)
+        print(" :: ")
         print(future.result())
 
     print("Published messages.")
@@ -120,7 +122,7 @@ def publish_messages_with_custom_attributes(project_id, topic_id):
     topic_path = publisher.topic_path(project_id, topic_id)
 
     for n in range(1, 10):
-        data = u"Message number {}".format(n)
+        data = u"Order number {} Placed".format(n)
         # Data must be a bytestring
         data = data.encode("utf-8")
         # Add two attributes, origin and username, to the message
